@@ -44,7 +44,7 @@ const Navigation = () => {
             onClick={() => scrollToSection("hero")}
             className="text-2xl font-bold text-orange-500 hover:scale-105 transition-transform"
           >
-            &lt;Dev/&gt;
+            &lt;AK/&gt;
           </button>
 
           {/* Desktop Navigation */}
