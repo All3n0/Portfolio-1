@@ -1,49 +1,41 @@
 'use client';
+import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 
 const Projects = () => {
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Skeeps Collection E-Commerce Platform",
       description:
         "Full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.",
-      tags: ["React", "Node.js", "MongoDB", "Stripe"],
+      tags: ["NEXTjs", "Node.js", "postgreSQL"],
       gradient: "from-orange-500 to-pink-500",
+      image: "/1.png", // 🖼️ optional image
     },
     {
-      title: "Fitness Tracker App",
+      title: "Blaze Food Ordering and Delivery Tracker App",
       description:
-        "Native Android application for tracking workouts, nutrition, and progress with beautiful data visualizations.",
-      tags: ["Android", "Kotlin", "Firebase", "Material Design"],
+        "Cross-platform food ordering and delivery tracking app with live driver updates and secure payments.",
+      tags: ["NEXTjs", "Node.js", "postgreSQL"],
       gradient: "from-pink-500 to-purple-500",
+      image: "/3.png", // 🖼️ optional image
+    },
+    
+    {
+      title: "TIKITI ticketing system",
+      description:
+        "An online ticketing system with advanced features, including seat selection, payment processing, and real-time updates.",
+      tags: ["NEXTjs", "Node.js", "postgreSQL"],
+      gradient: "from-pink-500 to-purple-500",
+      image: "/4.png", // 🖼️ optional image
     },
     {
-      title: "Brand Identity System",
+      title: "News Tracking Mobile App",
       description:
-        "Complete brand identity design including logo, color palette, typography, and marketing materials.",
-      tags: ["Branding", "UI/UX", "Figma", "Illustration"],
-      gradient: "from-purple-500 to-orange-500",
-    },
-    {
-      title: "Real-Time Chat Application",
-      description:
-        "Scalable chat platform with WebSocket support, file sharing, and end-to-end encryption.",
-      tags: ["React", "Socket.io", "Express", "PostgreSQL"],
-      gradient: "from-orange-500 to-purple-500",
-    },
-    {
-      title: "Task Management Mobile App",
-      description:
-        "Intuitive task manager with offline support, reminders, and collaborative features.",
+        "Intuitive news tracker with offline support, reminders, and collaborative features.",
       tags: ["Android", "Room DB", "MVVM", "Coroutines"],
       gradient: "from-pink-500 to-orange-500",
-    },
-    {
-      title: "Portfolio Design System",
-      description:
-        "Comprehensive design system with reusable components, documentation, and accessibility guidelines.",
-      tags: ["Design System", "Figma", "React", "Storybook"],
-      gradient: "from-purple-500 to-pink-500",
+      image: "/2.png", // ❌ no image → fallback to gradient
     },
   ];
 
@@ -66,15 +58,23 @@ const Projects = () => {
               className="bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-lg border border-gray-800 hover:shadow-orange-500/20 transition-all duration-500 hover:-translate-y-2"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div
-                className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}
-              >
-                <div className="absolute inset-0 bg-black/10" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 rounded-full bg-black/20 backdrop-blur-xl group-hover:scale-110 transition-transform duration-500" />
-                </div>
+              {/* 🔹 Top Section: Image or Gradient */}
+              <div className="relative h-48 overflow-hidden">
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div
+                    className={`h-full w-full bg-gradient-to-br ${project.gradient}`}
+                  />
+                )}
               </div>
 
+              {/* 🔹 Text Content */}
               <div className="p-6">
                 <h3 className="text-2xl font-semibold mb-3 text-gray-100 hover:text-orange-500 transition-colors duration-300">
                   {project.title}
