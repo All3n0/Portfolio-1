@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
 export const metadata = {
-  title: "Portfolio",
-  description: "Allan Kiprop Portfolio",
+  title: "Allan K ",
+  description: "Showcasing my software projects and designs.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
