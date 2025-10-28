@@ -1,7 +1,9 @@
 'use client';
 import { useEffect, useState } from "react";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 import heroBg from "../assets/hero-bg.jpg";
+
 import Head from "next/head";
 
 const Hero = () => {
@@ -41,11 +43,14 @@ const Hero = () => {
       >
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <img
-            src={heroBg}
-            alt="Hero background"
-            className="w-full h-full object-cover opacity-20"
-          />
+          <Image
+  src={heroBg}
+  alt="Hero background"
+  fill
+  className="object-cover opacity-20"
+  priority
+/>
+
           <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d0d]/80 via-[#0d0d0d]/90 to-[#0d0d0d]" />
         </div>
 
