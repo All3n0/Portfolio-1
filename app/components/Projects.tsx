@@ -55,9 +55,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           src={img}
           alt={title}
           fill
-          className={`object-cover transition-opacity duration-700 ${
-            index === current ? "opacity-100" : "opacity-0"
-          }`}
+          className={`object-cover transition-opacity duration-700 ${index === current ? "opacity-100" : "opacity-0"
+            }`}
         />
       ))}
     </div>
@@ -76,6 +75,28 @@ const Projects: React.FC = () => {
       images: ["/1.png"],
       demoLinks: [
         { label: "Live Demo", url: "https://skeepscollection.vercel.app/" },
+      ],
+    },
+    {
+      title: "Butula TVC E-Library",
+      description:
+        "A comprehensive web-based electronic library platform featuring resource management, metadata architecture, secure document viewing, and an admin dashboard.",
+      tags: ["NEXTjs", "Firebase", "Tailwind CSS"],
+      gradient: "from-emerald-500 to-teal-500",
+      images: ["/5.png"], // Update with actual image path
+      demoLinks: [
+        { label: "Live Demo", url: "https://butulatvc-e-library.vercel.app" },
+      ],
+    },
+    {
+      title: "Kazistack Task Management",
+      description:
+        "An agile task management website designed for tracking project schedules, organizing workflows, and coordinating development sprints.",
+      tags: ["NEXTjs", "React", "Firebase"],
+      gradient: "from-blue-500 to-cyan-500",
+      images: ["/6.png"], // Update with actual image path
+      demoLinks: [
+        { label: "Live Demo", url: "https://kazistack.vercel.app" },
       ],
     },
     {
@@ -124,7 +145,6 @@ const Projects: React.FC = () => {
       demoLinks: [
         { label: "Live Demo 1", url: "https://oredi-eugene.vercel.app/" },
         { label: "Live Demo 2", url: "https://eugene-oredi.vercel.app/" },
-        // { label: "Client Preview", url: "https://preview.your-portfolio-link.com" },
       ],
     },
   ];
