@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+/* Class-based dark mode (next-themes adds .dark to <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Semantic tokens. Components use these (bg-bg, text-ink, border-line, text-accent, ...)
+ * so one component works in both worlds and both themes.
+ *
+ *   World "dev"  : the original near-black + orange identity (default)
+ *   World "aero" : navy and instrument blue, set with data-world="aero" on a wrapper
+ */
+:root {
+  /* dev / light */
+  --bg: #fafaf9;
+  --bg-2: #f2f1ef;
+  --surface: #ffffff;
+  --surface-2: #f4f4f3;
+  --line: #e2e1de;
+  --line-strong: #cfcdc9;
+  --ink: #141210;
+  --ink-2: #2e2a27;
+  --muted: #57534e;
+  --faint: #78716c;
+  --accent: #ea580c;
+  --accent-strong: #c2410c;
+  --accent-alt: #db2777;
+  --accent-deep: #dc2626;
+  --accent-soft: rgba(234, 88, 12, 0.1);
+  --accent-ring: rgba(234, 88, 12, 0.35);
+  --on-accent: #ffffff;
+  --grid: rgba(20, 18, 16, 0.06);
+  --particle-a: #c2410c;
+  --particle-b: #1d4ed8;
+}
+
+.dark {
+  /* dev / dark — the original palette */
+  --bg: #0d0d0d;
+  --bg-2: #0a0a0a;
+  --surface: #141414;
+  --surface-2: #1a1a1a;
+  --line: #262626;
+  --line-strong: #3a3a3a;
+  --ink: #ffffff;
+  --ink-2: #d1d5db;
+  --muted: #9ca3af;
+  --faint: #6b7280;
+  --accent: #f97316;
+  --accent-strong: #ea580c;
+  --accent-alt: #ec4899;
+  --accent-deep: #dc2626;
+  --accent-soft: rgba(249, 115, 22, 0.1);
+  --accent-ring: rgba(249, 115, 22, 0.4);
+  --on-accent: #ffffff;
+  --grid: rgba(255, 255, 255, 0.04);
+  --particle-a: #f97316;
+  --particle-b: #4cc3ff;
+}
+
+[data-world="aero"] {
+  /* aero / light — blueprint paper */
+  --bg: #f1f6fc;
+  --bg-2: #e6eef8;
+  --surface: #ffffff;
+  --surface-2: #eaf1fa;
+  --line: #cbdaec;
+  --line-strong: #a9c1dd;
+  --ink: #0a1f3a;
+  --ink-2: #1c3558;
+  --muted: #45607f;
+  --faint: #6a83a3;
+  --accent: #0b6bcb;
+  --accent-strong: #0957a6;
+  --accent-alt: #3b55d4;
+  --accent-deep: #3b55d4;
+  --accent-soft: rgba(11, 107, 203, 0.09);
+  --accent-ring: rgba(11, 107, 203, 0.35);
+  --on-accent: #ffffff;
+  --grid: rgba(11, 107, 203, 0.08);
+  --particle-a: #0b6bcb;
+  --particle-b: #0b6bcb;
+}
+
+.dark [data-world="aero"],
+.dark[data-world="aero"] {
+  /* aero / dark — night flight deck */
+  --bg: #050e1a;
+  --bg-2: #071426;
+  --surface: #0a1b2f;
+  --surface-2: #0e2440;
+  --line: #17304f;
+  --line-strong: #24476f;
+  --ink: #e6f0fb;
+  --ink-2: #c2d5ea;
+  --muted: #88a3c2;
+  --faint: #5d7b9d;
+  --accent: #4cc3ff;
+  --accent-strong: #1fa5ec;
+  --accent-alt: #7c95ff;
+  --accent-deep: #7c95ff;
+  --accent-soft: rgba(76, 195, 255, 0.1);
+  --accent-ring: rgba(76, 195, 255, 0.4);
+  --on-accent: #04121f;
+  --grid: rgba(76, 195, 255, 0.06);
+  --particle-a: #4cc3ff;
+  --particle-b: #4cc3ff;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-alt: var(--accent-alt);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+
+  /* Kept for compatibility with the original classes */
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-muted-foreground: var(--muted);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Cardo", Georgia, serif;
+  --font-aero: "Barlow", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-aero-display: "Barlow Condensed", "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  background: var(--bg);
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-world="aero"] {
+  font-family: var(--font-aero);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Scroll reveal (see app/components/Reveal.tsx) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Original hero animations ---------- */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-40px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+.animate-float {
+  animation: float linear infinite;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* World switch transition veil */
+@keyframes veil-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Markdown content (project & simulation write-ups) ---------- */
+.prose-content {
+  color: var(--ink-2);
+  line-height: 1.75;
+  font-size: 1.0625rem;
+  max-width: 68ch;
+}
+.prose-content h2 {
+  font-family: var(--font-aero-display);
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin: 2.5rem 0 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.prose-content h2:first-child {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: 0;
+}
+.prose-content h3 {
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.5rem 0 0.5rem;
+}
+.prose-content p {
+  margin: 0 0 1rem;
+}
+.prose-content ul,
+.prose-content ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+.prose-content ul {
+  list-style: disc;
+}
+.prose-content ol {
+  list-style: decimal;
+}
+.prose-content li {
+  margin: 0.35rem 0;
+}
+.prose-content li::marker {
+  color: var(--accent);
+}
+.prose-content strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.prose-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-content code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--surface-2);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* ---------- Range inputs used by the simulations ---------- */
+input[type="range"].sim-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  outline: none;
+}
+input[type="range"].sim-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: pointer;
+}
+input[type="range"].sim-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--surface);
+  cursor: pointer;
+}
+input[type="range"].sim-range:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-float,
+  .animate-pulse,
+  .animate-fade-in-up {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tilt card glare shows on hover */
+.group:hover > .hover-glare {
+  opacity: 1;
+}
